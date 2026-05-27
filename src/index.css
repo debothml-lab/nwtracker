@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+  }
+  * {
+    @apply box-border;
+  }
+}
+
+@layer components {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 3px;
+  }
+}
+
+.recharts-tooltip-wrapper {
+  outline: none !important;
+}
+
+@media print {
+  /* Hide sidebar, controls, anything marked no-print */
+  .no-print { display: none !important; }
+  nav { display: none !important; }
+  aside { display: none !important; }
+  header { display: none !important; }
+
+  /* Clean white background */
+  body { background: white !important; }
+  html { background: white !important; }
+
+  /* Allow main content to fill the page */
+  main {
+    padding: 0 !important;
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  /* The dark navy report header — force background color to print */
+  .print-header {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color-adjust: exact;
+  }
+
+  /* Strip drop shadows */
+  .shadow-sm { box-shadow: none !important; }
+  .shadow { box-shadow: none !important; }
+  .shadow-md { box-shadow: none !important; }
+
+  /* Avoid splitting charts and table rows across pages */
+  .recharts-wrapper { page-break-inside: avoid; }
+  table { page-break-inside: auto; }
+  tr { page-break-inside: avoid; page-break-after: auto; }
+}
